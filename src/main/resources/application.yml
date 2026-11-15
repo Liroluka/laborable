@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: laborable-api
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/laborable}
+    username: ${DB_USER:laborable}
+    password: ${DB_PASSWORD:}
+  cache:
+    type: caffeine
+    cache-names: holidays
+    caffeine:
+      spec: maximumSize=5000,expireAfterWrite=1h
+
+server:
+  error:
+    include-message: never
+    include-stacktrace: never
+    include-binding-errors: never
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+laborable:
+  admin:
+    api-key: ${LABORABLE_ADMIN_API_KEY:}
+  cors:
+    allowed-origins: ${LABORABLE_CORS_ORIGINS:}
+  imports:
+    boe-base-url: https://www.boe.es
+    catalonia-base-url: https://analisi.transparenciacatalunya.cat
+    max-response-bytes: 20971520
+    timeout: 30s

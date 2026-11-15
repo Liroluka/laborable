@@ -1,0 +1,14 @@
+[
+ {"data":"2027-08-31T00:00:00.000","codi_municipi_ine":"08305","ajuntament_o_nucli_municipal":"Vilafranca del Penedès","pedania":"000","festiu":"Festiu local"},
+ {"data":"2027-09-01T00:00:00.000","codi_municipi_ine":"08305","ajuntament_o_nucli_municipal":"Vilafranca del Penedès","pedania":"000","festiu":"Festiu local"},
+ {"data":"2027-06-29T00:00:00.000","codi_municipi_ine":"08001","ajuntament_o_nucli_municipal":"Abrera","pedania":"000","festiu":"Festiu local"},
+ {"data":"2027-06-24T00:00:00.000","codi_municipi_ine":"08001","ajuntament_o_nucli_municipal":"Abrera","pedania":"000","festiu":"Festa local"},
+ {"data":"2027-03-03T00:00:00.000","codi_municipi_ine":"08002","ajuntament_o_nucli_municipal":"Test Town","pedania":"000","festiu":"Prueba 2"},
+ {"data":"2027-02-01T00:00:00.000","codi_municipi_ine":"08003","ajuntament_o_nucli_municipal":"Overloaded","pedania":"000","festiu":"Festiu local"},
+ {"data":"2027-02-02T00:00:00.000","codi_municipi_ine":"08003","ajuntament_o_nucli_municipal":"Overloaded","pedania":"000","festiu":"Festiu local"},
+ {"data":"2027-02-03T00:00:00.000","codi_municipi_ine":"08003","ajuntament_o_nucli_municipal":"Overloaded","pedania":"000","festiu":"Festiu local"},
+ {"data":"2027-04-05T00:00:00.000","codi_municipi_ine":"08004","ajuntament_o_nucli_municipal":"Nucli Test","pedania":"001","festiu":"Festiu local"},
+ {"data":"2026-05-05T00:00:00.000","codi_municipi_ine":"08005","ajuntament_o_nucli_municipal":"Wrong Year","pedania":"000","festiu":"Festiu local"},
+ {"data":"2027-05-10T00:00:00.000","codi_municipi_ine":"08901","ajuntament_o_nucli_municipal":"Castell Test","pedania":"000","festiu":"Festiu local"},
+ {"data":"2027-05-11T00:00:00.000","codi_municipi_ine":"17901","ajuntament_o_nucli_municipal":"Castell Test","pedania":"000","festiu":"Festiu local"}
+]
