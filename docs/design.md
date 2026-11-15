@@ -1,6 +1,6 @@
 # Дизайн-документ: API робочих днів і свят Іспанії
 
-Робоча назва: **Laborable** (див. [naming.md](naming.md)). Статус: чернетка v1, 2026-11-15.
+Назва: **Laborable** (альтернативні варіанти: [naming.md](naming.md)). Статус: чернетка v1, 2026-11-15.
 Стек: Java 17, Spring Boot 4.1, PostgreSQL 17, Flyway, Docker.
 
 ## 1. Проблема
