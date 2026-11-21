@@ -1,39 +1,54 @@
-# Аналіз аналогів і джерел даних (2026-11-15)
+# Análisis de alternativas y fuentes de datos (2026-11-15, ampliado el 2026-11-21)
 
-Позначки: **[перевірено]**: бачив безпосередньо під час дослідження; **[не перевірено]**: з загальних знань, уточнити перед рішеннями.
+Marcas: **[verificado]**: visto directamente durante la investigación; **[no verificado]**: de conocimiento general, confirmar antes de tomar decisiones.
 
-## Аналоги
+## Alternativas
 
-| Продукт | Що вміє | Обмеження для нашої задачі |
+| Producto | Qué hace | Limitaciones para nuestra tarea |
 |---|---|---|
-| Nager.Date (open source API) | Свята за країною; підрозділи ISO 3166-2 першого рівня **[перевірено за документацією]** | Міст і муніципалітетів немає **[перевірено]**; арифметики робочих днів немає **[не перевірено]** |
-| Python `holidays` (бібліотека) | Іспанія з автономіями (`AN`, `CT`, `IB`…) **[перевірено]** | Бібліотека, не сервіс; офіційно звірено лише 2010–2023 **[перевірено]**; муніципалітетів немає |
-| OpenHolidays API | Свята країн ЄС із підрозділами **[не перевірено]** | Рівень муніципалітетів та арифметика **[не перевірено]** |
-| Calendarific / Abstract API Holidays | Комерційні API свят, іспанські регіони **[не перевірено]** | Ціна, ліміти, муніципальні свята **[не перевірено]** |
-| Excel `NETWORKDAYS` / `WORKDAY` | Арифметика робочих днів зі списком свят | Список свят користувач збирає вручну |
+| Nager.Date (API de código abierto) | Festivos por país; subdivisiones ISO 3166-2 de primer nivel **[verificado en la documentación]** | No tiene ciudades ni municipios **[verificado]**; sin aritmética de días hábiles **[no verificado]** |
+| `holidays` de Python (biblioteca) | España con comunidades (`AN`, `CT`, `IB`…) **[verificado]** | Es una biblioteca, no un servicio; contrastada oficialmente solo para 2010–2023 **[verificado]**; sin municipios |
+| OpenHolidays API | Festivos de países de la UE con subdivisiones **[no verificado]** | Nivel municipal y aritmética **[no verificado]** |
+| Calendarific / Abstract API Holidays | APIs comerciales de festivos, regiones españolas **[no verificado]** | Precio, límites, festivos municipales **[no verificado]** |
+| Excel `NETWORKDAYS` / `WORKDAY` | Aritmética de días hábiles con una lista de festivos | El usuario reúne la lista de festivos a mano |
 
-**Висновок:** ніша це **муніципальні свята + арифметика робочих днів в одному API** для Іспанії. Усі, кого вдалося перевірити, закінчуються на рівні автономії.
+**Conclusión:** el nicho es **festivos municipales + aritmética de días hábiles en una sola API** para
+España. Todos los productos que se pudieron comprobar terminan en el nivel autonómico.
 
-## Джерела даних (усе **[перевірено]** 2026-11-15)
+## Fuentes de datos (verificadas el 2026-11-15, salvo indicación)
 
-**1. BOE: резолюція Dirección General de Trabajo про свята на рік**
-- 2027: BOE-A-2026-21254, резолюція від 8.10.2026, опублікована 13.10.2026.
-- XML: `https://www.boe.es/diario_boe/xml.php?id=BOE-A-2026-21254`. Відкритий API sumario: `https://www.boe.es/datosabiertos/api/boe/sumario/YYYYMMDD` (JSON).
-- Додаток: таблиця 19 стовпців (17 автономій + Ceuta + Melilla); коди `*` державне незамінюване, `**` державне без заміни, `***` власне автономії.
-- Примітки під таблицею містять підрегіональні свята: острови Канарських (Decreto 115/2026), Валь-д'Аран (Orden EMT/52/2026).
-- Особливості 2027: 15.08 це неділя, тому окремі автономії мають 16.08 або власну заміну (напр. Extremadura 11.10).
+**1. BOE: resolución de la Dirección General de Trabajo sobre las fiestas del año**
+- 2027: BOE-A-2026-21254, resolución de 8.10.2026, publicada el 13.10.2026.
+- XML: `https://www.boe.es/diario_boe/xml.php?id=BOE-A-2026-21254`. API abierta de sumarios: `https://www.boe.es/datosabiertos/api/boe/sumario/YYYYMMDD` (JSON).
+- Anexo: tabla de 19 columnas (17 comunidades + Ceuta + Melilla); códigos `*` estatal no sustituible, `**` estatal sustituible, `***` propio de la comunidad.
+- Las notas bajo la tabla contienen festivos subregionales: islas de Canarias (Decreto 115/2026), Val d'Aran (Orden EMT/52/2026).
+- Particularidades de 2027: el 15.08 es domingo, por lo que algunas comunidades tienen el 16.08 o una sustitución propia (p. ej. Extremadura 11.10).
 
-**2. Відкриті дані Каталонії: «Calendari de festes locals»**
-- Socrata: `https://analisi.transparenciacatalunya.cat/resource/b4eh-r8up.json` (SODA, фільтр `$where`, `$limit`).
-- Поля: `any_calendari`, `data`, `ajuntament_o_nucli_municipal`, `codi_municipi_ine`, `pedania`, `festiu`.
-- 115 006 рядків, роки 2012–2026. Є тестове сміття в старих роках (`Prueba 2`, `sal`, `abc` та ін.), загальнокаталонські дати (`Any nou`, `La Diada`).
-- 2026: 2794 рядки, 909 муніципалітетів, усі `Festiu local`. Приклад: Vilafranca del Penedès (INE 08305) має 2026-08-31 і 2026-09-01.
-- Дані за 2027 рік ще не опубліковані (на 2026-11-15 максимум 2026).
+**2. Datos abiertos de Cataluña: «Calendari de festes locals»**
+- Socrata: `https://analisi.transparenciacatalunya.cat/resource/b4eh-r8up.json` (SODA, filtro `$where`, `$limit`).
+- Campos: `any_calendari`, `data`, `ajuntament_o_nucli_municipal`, `codi_municipi_ine`, `pedania`, `festiu`.
+- 115 006 filas, años 2012–2026. Hay basura de prueba en años antiguos (`Prueba 2`, `sal`, `abc`, etc.) y fechas de toda Cataluña (`Any nou`, `La Diada`).
+- 2026: 2794 filas, 909 municipios, todas `Festiu local`. Ejemplo: Vilafranca del Penedès (INE 08305) tiene 2026-08-31 y 2026-09-01.
+- Los datos de 2027 aún no están publicados (a 2026-11-15 el máximo es 2026).
 
-## Правова основа (до перевірки юристом)
-- RD 2001/1983, ст. 45–46: національні, автономні свята; **до 2 місцевих свят на рік** на муніципалітет.
-- Estatuto de los Trabajadores, ст. 37.2: до 14 святкових днів на рік.
-- Ley 39/2015, ст. 30: адміністративні строки в днях це дні hábiles, тобто без суботи, неділі й свят.
+**3. Open Data Euskadi: «Calendario laboral de Euskadi»** (verificado el 2026-11-21 con el fichero de 2026)
+- Ficha: `https://opendata.euskadi.eus/catalogo/-/calendario-laboral-de-euskadi-para-el-2026/`. Licencia Creative Commons Reconocimiento (CC BY). Formatos: CSV, JSON, XML, XLSX, iCal; también hay una API REST.
+- JSON: `https://opendata.euskadi.eus/contenidos/ds_eventos/calendario_laboral_2026/opendata/calendario_laboral_2026.json` (UTF-8; el año va en el nombre).
+- Campos: `date` (`yyyy/MM/dd`), `descripcionEs`, `descriptionEu`, `municipalityEs`, `MunicipalityEu`, `territory`, `municipalitycode` (número, nulo en las filas generales y territoriales), `latwgs84`, `lonwgs84`.
+- 298 filas en 2026: 12 de toda la comunidad (`municipalityEs = "CAE"`), 3 territoriales (Bizkaia, Gipuzkoa, Araba) y 283 municipales. `municipalitycode` es el número INE dentro de la provincia (INE = `01`/`20`/`48` + tres cifras).
+- Algunos códigos concentran muchas filas (p. ej. un código alavés con 24), lo que indica entidades sub-municipales o concejos: el límite legal de dos las deja como anomalías.
 
-## Типові рішення, які беремо
-Ключ муніципалітету це INE-код; відповідь явно каже про покриття даних; імпорт ідемпотентний і перевіряється законними інваріантами.
+**4. Otras comunidades** (verificado el 2026-11-21)
+- **Castilla y León:** el conjunto «Fiestas locales: Calendario de Fiestas de Carácter Local» (datosabiertos.jcyl.es, CC BY 4.0) ofrece CSV anuales (2024–2026) con municipio, provincia y código INE; la propia ficha avisa de fechas en blanco o repetidas del año anterior. La descarga redirige a `transparencia.jcyl.es`, cuyo certificado no se pudo verificar desde nuestro entorno, así que no hay adaptador todavía **[sin verificar el formato]**.
+- **Madrid:** el portal del Ayuntamiento (datos.madrid.es) publica el calendario laboral solo de la ciudad. Para el resto de municipios, los festivos locales se publican en el BOCM; no se encontró un conjunto abierto único.
+- **Andalucía:** los festivos locales se publican cada año por resolución de la Dirección General de Trabajo en el BOJA, con un anexo por municipio; la Junta ofrece una consulta web, pero no se encontró un conjunto de datos abiertos.
+- **Resto:** no se ha localizado una fuente abierta legible por máquina para toda la comunidad **[no verificado]**; se cargan con `LOCAL_GENERIC`.
+
+## Base jurídica (pendiente de revisión por un abogado)
+- RD 2001/1983, arts. 45–46: fiestas estatales y autonómicas; **hasta 2 fiestas locales al año** por municipio.
+- Estatuto de los Trabajadores, art. 37.2: hasta 14 días festivos al año.
+- Ley 39/2015, art. 30: los plazos administrativos en días son días hábiles, es decir, sin sábados, domingos ni festivos.
+
+## Soluciones tipo que adoptamos
+La clave del municipio es el código INE; la respuesta dice explícitamente la cobertura de los datos;
+la importación es idempotente y se comprueba con invariantes legales, comunes a todas las comunidades.

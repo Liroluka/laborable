@@ -1,21 +1,23 @@
-# Вимоги
+# Requisitos
 
-## Для кого
-Gestorías і юристи (строки), відділи кадрів (відпустки), інтернет-магазини (доставка), розробники інших застосунків.
+## Para quién
+Gestorías y abogados (plazos), departamentos de personal (vacaciones), tiendas en línea (entregas), desarrolladores de otras aplicaciones.
 
-## Головні сценарії (v1)
-1. Отримати список свят року для автономії та/або муніципалітету.
-2. Дізнатися, чи конкретна дата є робочою в місці.
-3. Знайти дату через N робочих днів (вперед і назад).
-4. Порахувати робочі дні між двома датами.
-5. Адміністратор завантажує свята з BOE і відкритих даних Каталонії (з dry-run).
+## Escenarios principales (v1)
+1. Obtener la lista de festivos de un año para una comunidad y/o un municipio.
+2. Saber si una fecha concreta es hábil en un lugar.
+3. Encontrar la fecha tras N días hábiles (hacia delante y hacia atrás).
+4. Contar los días hábiles entre dos fechas.
+5. La persona administradora carga los festivos desde el BOE, los datos abiertos de Cataluña y del País Vasco, o una lista propia para cualquier otra comunidad (con `dryRun`).
 
-## Нефункціональні вимоги
-- p95 < 100 мс для `GET` з теплим кешем; запуск < 15 с.
-- Відповіді детерміновані й відтворювані; відсутність даних це явна помилка або попередження.
-- Покриття тестами ~80% (≥ 90% для `domain` та `imports`).
-- Docker-розгортання однією командою; конфігурація лише через змінні середовища.
+## Requisitos no funcionales
+- p95 < 100 ms para `GET` con caché caliente; arranque < 15 s.
+- Respuestas deterministas y reproducibles; la ausencia de datos es un error o un aviso explícito.
+- Cobertura de pruebas ~80 % (≥ 90 % en `domain` e `imports`).
+- Despliegue con Docker en un solo comando; configuración solo mediante variables de entorno.
 
-## Не входить у v1
-Профілі судових строків, муніципальні свята поза Каталонією, острівні свята, provisional-роки, клієнтські акаунти й квоти, адмін-UI, шкільні свята.
-Див. [roadmap-analysis.md](roadmap-analysis.md).
+## Fuera de v1
+Perfiles de plazos judiciales, adaptadores automáticos para comunidades sin fuente abierta
+verificada (se usa la carga genérica), festivos insulares (Canarias), de Val d'Aran y territoriales
+del País Vasco, años provisionales, cuentas de cliente y cuotas, interfaz de administración, fiestas escolares.
+Ver [roadmap-analysis.md](roadmap-analysis.md).

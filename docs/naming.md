@@ -1,22 +1,22 @@
-# Варіанти назв
+# Opciones de nombre
 
-Доступність доменів, акаунтів і товарних знаків **не перевірялась**. Перед вибором перевірте самі.
-Наразі в коді використано робочу назву **Laborable** (пакет `app.laborable`). Перейменування це механічна заміна.
+La disponibilidad de dominios, cuentas y marcas **no se ha comprobado**. Compruébela usted antes de decidir.
+El nombre elegido es **Laborable** (paquete `app.laborable`). Cambiarlo sería una sustitución mecánica.
 
-| # | Назва | Походження | Плюси | Мінуси |
+| # | Nombre | Origen | Ventajas | Inconvenientes |
 |---|---|---|---|---|
-| 1 | **Laborable** (рекомендація) | *día laborable*, «робочий день» | Іспанською звучить природно, коротка, одразу зрозуміла гестор'ям та HR | Загальне слово, складніше зайняти домен |
-| 2 | **Plazo** | *plazo*, «строк» | Влучає в головний сценарій (строки подачі), дуже коротка | Не говорить про свята; широке слово |
-| 3 | **DíaHábil** (`diahabil`) | *día hábil*, юридичний термін | Точний юридичний термін, довіра юристів | Діакритика, у URL потрібен ASCII-варіант |
-| 4 | **Festivo** | *festivo*, «святковий день» | Просте, запам'ятовується | Описує лише половину продукту |
-| 5 | **Puente** | *puente*, «міст» (вихідний між святом і вихідними) | Культурно впізнаване, цікавий бренд | Вузьке, потребує пояснення іноземцям |
-| 6 | **Calendaria** | calendario + -ia | Універсальна, добре для платформи календарів | Багато схожих назв |
-| 7 | **Cómputo** | *cómputo de plazos* | Точно для юридичного підрахунку строків | Звучить сухо |
-| 8 | **WorkdaysES** | англ. «workdays» + ES | Зрозуміла розробникам, добра для SEO | Без характеру, схожа на бібліотеку |
-| 9 | **Hábil** | *hábil* | Дуже коротка | Діакритика, багатозначне слово |
-| 10 | **Fiestario** | *fiesta* + -ario | Грайлива, запам'ятовується | Несерйозна для юридичної аудиторії |
+| 1 | **Laborable** (elegido) | *día laborable* | En español suena natural, es corto y lo entienden de inmediato gestorías y RR. HH. | Palabra común, más difícil conseguir el dominio |
+| 2 | **Plazo** | *plazo* | Da en el escenario principal (plazos de presentación), muy corto | No habla de festivos; palabra muy amplia |
+| 3 | **DíaHábil** (`diahabil`) | *día hábil*, término jurídico | Término jurídico exacto, genera confianza en abogados | Tilde; en las URL hace falta la variante ASCII |
+| 4 | **Festivo** | *festivo* | Sencillo, se recuerda | Describe solo la mitad del producto |
+| 5 | **Puente** | *puente* (día entre un festivo y el fin de semana) | Culturalmente reconocible, marca interesante | Estrecho; hay que explicarlo a extranjeros |
+| 6 | **Calendaria** | calendario + -ia | Universal, buena para una plataforma de calendarios | Muchos nombres parecidos |
+| 7 | **Cómputo** | *cómputo de plazos* | Exacto para el cálculo jurídico de plazos | Suena seco |
+| 8 | **WorkdaysES** | «workdays» + ES | Clara para desarrolladores, buena para SEO | Sin carácter, parece una biblioteca |
+| 9 | **Hábil** | *hábil* | Muy corto | Tilde, palabra polisémica |
+| 10 | **Fiestario** | *fiesta* + -ario | Divertida, se recuerda | Poco seria para un público jurídico |
 
-## Рекомендація
-- Для B2B (gestorías, HR): **Laborable** або **Plazo**, вони звучать як корисний інструмент.
-- Для open-source чи розробників: **WorkdaysES** (зрозуміло з назви), з брендом Laborable над ним.
-- Перед вибором: перевірити домен (`.es`, `.com`, `.dev`), GitHub-організацію, реєстр OEPM (товарні знаки), Maven `groupId`.
+## Recomendación
+- Para B2B (gestorías, RR. HH.): **Laborable** o **Plazo**, suenan a herramienta útil.
+- Para código abierto o desarrolladores: **WorkdaysES** (se entiende por el nombre), con la marca Laborable por encima.
+- Antes de elegir: comprobar el dominio (`.es`, `.com`, `.dev`), la organización de GitHub, el registro de la OEPM (marcas) y el `groupId` de Maven.
