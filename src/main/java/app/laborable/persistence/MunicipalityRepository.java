@@ -2,9 +2,11 @@ package app.laborable.persistence;
 
 import java.sql.Types;
 import java.text.Normalizer;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
+import java.util.Set;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
@@ -64,6 +66,14 @@ public class MunicipalityRepository {
         .param("c", provinceCode)
         .query(String.class)
         .optional();
+  }
+
+  public Set<String> provincesOfRegion(String regionCode) {
+    return new HashSet<>(
+        jdbc.sql("select code from province where region_code = :r")
+            .param("r", regionCode)
+            .query(String.class)
+            .list());
   }
 
   public boolean regionExists(String code) {

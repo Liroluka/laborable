@@ -30,7 +30,8 @@ public class HttpRemoteFetcher implements RemoteFetcher {
     this.allowedHosts =
         Set.of(
             URI.create(imports.boeBaseUrl()).getHost(),
-            URI.create(imports.cataloniaBaseUrl()).getHost());
+            URI.create(imports.cataloniaBaseUrl()).getHost(),
+            URI.create(imports.euskadiBaseUrl()).getHost());
     this.maxBytes = imports.maxResponseBytes();
     this.timeout = imports.timeout();
     this.client =

@@ -14,14 +14,16 @@ import org.springframework.core.io.ClassPathResource;
 /** Fixture rows are synthetic but follow the field layout of the real Socrata dataset. */
 class CataloniaLocalParserTest {
 
-  private static CataloniaLocalParser.Parsed parsed;
+  private static LocalHolidayRules.Parsed parsed;
 
   @BeforeAll
   static void parse() throws IOException {
     String json =
         new ClassPathResource("fixtures/catalonia-local-2027.json")
             .getContentAsString(StandardCharsets.UTF_8);
-    parsed = new CataloniaLocalParser().parse(json, 2027, Set.of(LocalDate.of(2027, 6, 24)));
+    parsed =
+        new CataloniaLocalParser()
+            .parse(json, 2027, Set.of("08", "17", "25", "43"), Set.of(LocalDate.of(2027, 6, 24)));
   }
 
   @Test

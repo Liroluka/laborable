@@ -66,10 +66,14 @@ class ApiIntegrationTest {
     @Primary
     RemoteFetcher fixtureFetcher() {
       return (URI uri) -> {
-        String resource =
-            uri.toString().contains("xml.php")
-                ? "fixtures/boe-fiestas-2027.xml"
-                : "fixtures/catalonia-local-2027.json";
+        String resource;
+        if (uri.toString().contains("xml.php")) {
+          resource = "fixtures/boe-fiestas-2027.xml";
+        } else if (uri.getHost().contains("euskadi")) {
+          resource = "fixtures/euskadi-calendar-2027.json";
+        } else {
+          resource = "fixtures/catalonia-local-2027.json";
+        }
         try {
           return new ClassPathResource(resource).getContentAsString(StandardCharsets.UTF_8);
         } catch (IOException e) {
@@ -274,5 +278,115 @@ class ApiIntegrationTest {
   void healthAndOpenApiAreAvailable() throws Exception {
     mvc.perform(get("/actuator/health")).andExpect(status().isOk());
     mvc.perform(get("/v3/api-docs")).andExpect(status().isOk());
+  }
+
+  private static String genericBody(int year, String region, String entries) {
+    return "{\"source\":\"LOCAL_GENERIC\",\"year\":"
+        + year
+        + ",\"region\":"
+        + (region == null ? "null" : "\"" + region + "\"")
+        + ",\"entries\":"
+        + entries
+        + "}";
+  }
+
+  @Test
+  @Order(13)
+  void importsBasqueLocalHolidaysFromOpenData() throws Exception {
+    mvc.perform(
+            post("/admin/holidays/import")
+                .contentType(MediaType.APPLICATION_JSON)
+                .header("X-API-Key", KEY)
+                .content("{\"source\":\"EUSKADI_LOCAL\",\"year\":2027}"))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.status").value("DONE"))
+        .andExpect(jsonPath("$.parsed").value(4))
+        .andExpect(jsonPath("$.anomalies", hasSize(1)))
+        .andExpect(jsonPath("$.notes[*]", hasItem(containsString("territorial holiday"))));
+    mvc.perform(get("/holidays").param("year", "2027").param("municipality", "48001"))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.place.region").value("PV"))
+        .andExpect(jsonPath("$.coverage.localLoaded").value(true))
+        .andExpect(jsonPath("$.holidays[*].date", hasItem("2027-05-15")))
+        .andExpect(jsonPath("$.warnings[*].code", hasItem("SUBREGIONAL_HOLIDAYS_NOT_SUPPORTED")));
+  }
+
+  @Test
+  @Order(14)
+  void importsLocalHolidaysOfAnyRegionWithTheGenericSource() throws Exception {
+    String entries =
+        """
+        [{"ine":"41091","municipality":"Sevilla","date":"2027-05-30","name":"Fiesta local de Sevilla"},
+         {"ine":"41091","municipality":"Sevilla","date":"2027-06-24","name":"Segunda fiesta local"},
+         {"ine":"14021","municipality":"Córdoba","date":"2027-05-24","name":"Fiesta local de Córdoba"},
+         {"ine":"08019","municipality":"Barcelona","date":"2027-05-24","name":"No es de Andalucía"}]
+        """;
+    mvc.perform(
+            post("/admin/holidays/import")
+                .contentType(MediaType.APPLICATION_JSON)
+                .header("X-API-Key", KEY)
+                .content(genericBody(2027, "AN", entries)))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.parsed").value(3))
+        .andExpect(
+            jsonPath("$.notes[*]", hasItem(containsString("municipality_of_another_region"))));
+    mvc.perform(get("/holidays").param("year", "2027").param("municipality", "41091"))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.place.region").value("AN"))
+        .andExpect(jsonPath("$.coverage.localLoaded").value(true))
+        .andExpect(jsonPath("$.holidays[*].date", hasItem("2027-05-30")));
+    mvc.perform(
+            get("/business-days/is-working")
+                .param("date", "2027-05-24")
+                .param("municipality", "cordoba"))
+        .andExpect(jsonPath("$.working").value(false));
+  }
+
+  @Test
+  @Order(15)
+  void genericImportIsValidatedAndNeverWipesDataWithNothing() throws Exception {
+    String oneEntry =
+        "[{\"ine\":\"41091\",\"municipality\":\"Sevilla\",\"date\":\"2027-05-30\","
+            + "\"name\":\"Fiesta local de Sevilla\"}]";
+    mvc.perform(
+            post("/admin/holidays/import")
+                .contentType(MediaType.APPLICATION_JSON)
+                .header("X-API-Key", KEY)
+                .content(genericBody(2027, null, oneEntry)))
+        .andExpect(status().isBadRequest());
+    mvc.perform(
+            post("/admin/holidays/import")
+                .contentType(MediaType.APPLICATION_JSON)
+                .header("X-API-Key", KEY)
+                .content(genericBody(2027, "AN", "[]")))
+        .andExpect(status().isBadRequest());
+    mvc.perform(
+            post("/admin/holidays/import")
+                .contentType(MediaType.APPLICATION_JSON)
+                .header("X-API-Key", KEY)
+                .content(genericBody(2027, "AN", "[{\"ine\":\"12\",\"municipality\":\"X\"}]")))
+        .andExpect(status().isBadRequest());
+    // BOE data of 2028 was never imported
+    mvc.perform(
+            post("/admin/holidays/import")
+                .contentType(MediaType.APPLICATION_JSON)
+                .header("X-API-Key", KEY)
+                .content(genericBody(2028, "AN", oneEntry.replace("2027", "2028"))))
+        .andExpect(status().isConflict());
+    // nothing valid in the upload: refuse instead of erasing the loaded year
+    mvc.perform(
+            post("/admin/holidays/import")
+                .contentType(MediaType.APPLICATION_JSON)
+                .header("X-API-Key", KEY)
+                .content(
+                    genericBody(
+                        2027,
+                        "AN",
+                        "[{\"ine\":\"08019\",\"municipality\":\"Barcelona\","
+                            + "\"date\":\"2027-05-24\",\"name\":\"Otra comunidad\"}]")))
+        .andExpect(status().isUnprocessableContent())
+        .andExpect(jsonPath("$.type").value("urn:laborable:problem:no-local-holidays"));
+    mvc.perform(get("/holidays").param("year", "2027").param("municipality", "41091"))
+        .andExpect(jsonPath("$.holidays[*].date", hasItem("2027-05-30")));
   }
 }

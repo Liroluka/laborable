@@ -12,5 +12,9 @@ public record LaborableProperties(Admin admin, Cors cors, Imports imports) {
   public record Cors(List<String> allowedOrigins) {}
 
   public record Imports(
-      String boeBaseUrl, String cataloniaBaseUrl, long maxResponseBytes, Duration timeout) {}
+      String boeBaseUrl,
+      String cataloniaBaseUrl,
+      String euskadiBaseUrl,
+      long maxResponseBytes,
+      Duration timeout) {}
 }

@@ -39,5 +39,6 @@ laborable:
   imports:
     boe-base-url: https://www.boe.es
     catalonia-base-url: https://analisi.transparenciacatalunya.cat
+    euskadi-base-url: https://opendata.euskadi.eus
     max-response-bytes: 20971520
     timeout: 30s

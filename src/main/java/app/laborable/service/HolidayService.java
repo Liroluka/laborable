@@ -59,12 +59,14 @@ public class HolidayService {
       }
     }
     if ("CN".equals(place.regionCode())
+        || "PV".equals(place.regionCode())
         || ("CT".equals(place.regionCode())
             && (place.municipalityIne() == null || place.municipalityIne().startsWith("25")))) {
       warnings.add(
           new Warning(
               "SUBREGIONAL_HOLIDAYS_NOT_SUPPORTED",
-              "Island (Canarias) and Val d'Aran holidays are not applied."));
+              "Island (Canarias), Val d'Aran and Basque territorial (Araba, Bizkaia, Gipuzkoa)"
+                  + " holidays are not applied."));
     }
     List<HolidayView> holidays = repository.find(year, place.regionCode(), place.municipalityIne());
     return new YearHolidays(year, holidays, localLoaded, List.copyOf(warnings));

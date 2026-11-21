@@ -1,0 +1,17 @@
+[
+ {"date":"2027/01/01","descripcionEs":"Año Nuevo","descriptionEu":"Urteberri eguna","municipalityEs":"CAE","MunicipalityEu":"EAE","territory":"Todos/denak","municipalitycode":null,"latwgs84":null,"lonwgs84":null},
+ {"date":"2027/07/31","descripcionEs":"San Ignacio de Loyola","descriptionEu":"Loiolako San Inazio","municipalityEs":"Bizkaia","MunicipalityEu":"Bizkaia","territory":"Bizkaia","municipalitycode":null,"latwgs84":null,"lonwgs84":null},
+ {"date":"2027/05/15","descripcionEs":"San Trokaz","descriptionEu":"San Trokaz Eguna","municipalityEs":"Abadiño  ","MunicipalityEu":"Abadiño  ","territory":"Bizkaia","municipalitycode":1.0,"latwgs84":43.15,"lonwgs84":-2.61},
+ {"date":"2027/09/14","descripcionEs":"Santa Cruz","descriptionEu":"Santa Kruz","municipalityEs":"Abadiño  ","MunicipalityEu":"Abadiño  ","territory":"Bizkaia","municipalitycode":1.0,"latwgs84":43.15,"lonwgs84":-2.61},
+ {"date":"2027/01/06","descripcionEs":"Epifanía repetida","descriptionEu":"Epifania","municipalityEs":"Abanto y Ciérvana-Abanto Zierbena","MunicipalityEu":"Abanto y Ciérvana-Abanto Zierbena","territory":"Bizkaia","municipalitycode":2.0,"latwgs84":43.3,"lonwgs84":-3.08},
+ {"date":"2027/06/15","descripcionEs":"San Antonio","descriptionEu":"San Antonio","municipalityEs":"Abanto y Ciérvana-Abanto Zierbena","MunicipalityEu":"Abanto y Ciérvana-Abanto Zierbena","territory":"Bizkaia","municipalitycode":2.0,"latwgs84":43.3,"lonwgs84":-3.08},
+ {"date":"2026/05/05","descripcionEs":"Fiesta del año pasado","descriptionEu":"Joan den urtekoa","municipalityEs":"Amorebieta-Etxano","MunicipalityEu":"Amorebieta-Etxano","territory":"Bizkaia","municipalitycode":3.0,"latwgs84":43.2,"lonwgs84":-2.7},
+ {"date":"2027/09/08","descripcionEs":"Natividad de la Virgen","descriptionEu":"Andre Maria","municipalityEs":"Alegría-Dulantzi","MunicipalityEu":"Dulantzi","territory":"Álava - Araba","municipalitycode":2.0,"latwgs84":42.8,"lonwgs84":-2.5},
+ {"date":"2027/04/28","descripcionEs":"San Prudencio","descriptionEu":"San Prudentzio","municipalityEs":"Álava - Araba","MunicipalityEu":"Álava - Araba","territory":"Álava - Araba","municipalitycode":null,"latwgs84":null,"lonwgs84":null},
+ {"date":"2027/05/08","descripcionEs":"San Miguel","descriptionEu":"San Migel","municipalityEs":"Concejos Test","MunicipalityEu":"Concejos Test","territory":"Gipuzkoa","municipalitycode":35.0,"latwgs84":43.0,"lonwgs84":-2.0},
+ {"date":"2027/06/29","descripcionEs":"San Pedro","descriptionEu":"San Pedro","municipalityEs":"Concejos Test","MunicipalityEu":"Concejos Test","territory":"Gipuzkoa","municipalitycode":35.0,"latwgs84":43.0,"lonwgs84":-2.0},
+ {"date":"2027/07/22","descripcionEs":"Santa Magdalena","descriptionEu":"Madalena","municipalityEs":"Concejos Test","MunicipalityEu":"Concejos Test","territory":"Gipuzkoa","municipalitycode":35.0,"latwgs84":43.0,"lonwgs84":-2.0},
+ {"date":"2027/08/24","descripcionEs":"San Bartolomé","descriptionEu":"San Bartolome","municipalityEs":"Concejos Test","MunicipalityEu":"Concejos Test","territory":"Gipuzkoa","municipalitycode":35.0,"latwgs84":43.0,"lonwgs84":-2.0},
+ {"date":"2027/05/20","descripcionEs":"Fiesta de territorio desconocido","descriptionEu":"Ezezaguna","municipalityEs":"Nowhere","MunicipalityEu":"Nowhere","territory":"Narnia","municipalitycode":5.0,"latwgs84":null,"lonwgs84":null},
+ {"date":"2027/05/21","descripcionEs":"Codigo imposible","descriptionEu":"Ezinezkoa","municipalityEs":"Zero","MunicipalityEu":"Zero","territory":"Bizkaia","municipalitycode":0.0,"latwgs84":null,"lonwgs84":null}
+]
